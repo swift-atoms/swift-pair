@@ -1,5 +1,5 @@
 import Pair
-import Hash_Standard_Library_Integration
+import Hash
 import Testing
 
 struct Token: ~Copyable, Sendable {

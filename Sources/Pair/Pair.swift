@@ -19,14 +19,17 @@ public struct Pair<First: ~Copyable & ~Escapable, Second: ~Copyable & ~Escapable
     }
 }
 
-extension Pair: Copyable where First: Copyable & ~Escapable, Second: Copyable & ~Escapable {}
-extension Pair: Escapable where First: Escapable & ~Copyable, Second: Escapable & ~Copyable {}
-extension Pair: Sendable
-where First: Sendable & ~Copyable & ~Escapable, Second: Sendable & ~Copyable & ~Escapable {}
+extension Pair: Swift.Copyable where First: Swift.Copyable & ~Escapable, Second: Swift.Copyable & ~Escapable {}
+
+extension Pair: Swift.Escapable where First: Swift.Escapable & ~Copyable, Second: Swift.Escapable & ~Copyable {}
+
+extension Pair: Swift.Sendable
+where First: Swift.Sendable & ~Copyable & ~Escapable, Second: Swift.Sendable & ~Copyable & ~Escapable {}
 
 #if !hasFeature(Embedded)
-    extension Pair: Codable where First: Codable, Second: Codable {}
+extension Pair: Swift.Codable where First: Swift.Codable, Second: Swift.Codable {}
 #endif
+
 
 extension Pair where First: ~Copyable, Second: ~Copyable & ~Escapable {
 

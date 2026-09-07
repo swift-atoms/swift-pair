@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Pair", targets: ["Pair"]),
-        .library(name: "Pair Standard Library Integration", targets: ["Pair Standard Library Integration"]),
-        .library(name: "Pair Foundation Library Integration", targets: ["Pair Foundation Library Integration"]),
+
+        .library(name: "Pair Foundation Integration", targets: ["Pair Foundation Integration"]),
         .library(name: "Pair Test Support", targets: ["Pair Test Support"]),
     ],
     dependencies: [
@@ -41,20 +41,13 @@ let package = Package(
             ],
             path: "Sources/Pair"
         ),
+        
         .target(
-            name: "Pair Standard Library Integration",
+            name: "Pair Foundation Integration",
             dependencies: [
                 .target(name: "Pair"),
             ],
-            path: "Sources/Pair Standard Library Integration"
-        ),
-        .target(
-            name: "Pair Foundation Library Integration",
-            dependencies: [
-                .target(name: "Pair"),
-                .target(name: "Pair Standard Library Integration"),
-            ],
-            path: "Sources/Pair Foundation Library Integration"
+            path: "Sources/Pair Foundation Integration"
         ),
         .target(
             name: "Pair Test Support",
@@ -67,10 +60,9 @@ let package = Package(
             name: "Pair Tests",
             dependencies: [
                 .target(name: "Pair"),
-                .product(name: "Hash Standard Library Integration", package: "swift-hash"),
+                .product(name: "Hash", package: "swift-hash"),
                 .target(name: "Pair Test Support"),
-                .target(name: "Pair Standard Library Integration"),
-                .target(name: "Pair Foundation Library Integration"),
+                .target(name: "Pair Foundation Integration"),
             ],
             path: "Tests/Pair Tests"
         ),
