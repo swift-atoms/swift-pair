@@ -12,10 +12,10 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        .library(
-            name: "Pair",
-            targets: ["Pair"]
-        )
+        .library(name: "Pair", targets: ["Pair"]),
+        .library(name: "Pair Standard Library Integration", targets: ["Pair Standard Library Integration"]),
+        .library(name: "Pair Foundation Library Integration", targets: ["Pair Foundation Library Integration"]),
+        .library(name: "Pair Test Support", targets: ["Pair Test Support"]),
     ],
     dependencies: [
         .package(
@@ -35,27 +35,51 @@ let package = Package(
         .target(
             name: "Pair",
             dependencies: [
-                .product(name: "Equation Protocol", package: "swift-equation"),
-                .product(name: "Hash Protocol", package: "swift-hash"),
-                .product(name: "Comparison Protocol", package: "swift-comparison"),
-            ]
+                .product(name: "Equation", package: "swift-equation"),
+                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Comparison", package: "swift-comparison"),
+            ],
+            path: "Sources/Pair"
+        ),
+        .target(
+            name: "Pair Standard Library Integration",
+            dependencies: [
+                .target(name: "Pair"),
+            ],
+            path: "Sources/Pair Standard Library Integration"
+        ),
+        .target(
+            name: "Pair Foundation Library Integration",
+            dependencies: [
+                .target(name: "Pair"),
+                .target(name: "Pair Standard Library Integration"),
+            ],
+            path: "Sources/Pair Foundation Library Integration"
+        ),
+        .target(
+            name: "Pair Test Support",
+            dependencies: [
+                .target(name: "Pair"),
+            ],
+            path: "Tests/Support"
         ),
         .testTarget(
             name: "Pair Tests",
             dependencies: [
                 .target(name: "Pair"),
-                .product(
-                    name: "Hash Standard Library Integration",
-                    package: "swift-hash"
-                ),
-            ]
+                .product(name: "Hash Standard Library Integration", package: "swift-hash"),
+                .target(name: "Pair Test Support"),
+                .target(name: "Pair Standard Library Integration"),
+                .target(name: "Pair Foundation Library Integration"),
+            ],
+            path: "Tests/Pair Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
@@ -64,8 +88,4 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }
