@@ -53,17 +53,17 @@ extension Span: Comparison::Comparison.`Protocol` {
 }
 
 @Suite
-struct `Pair Tests` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
-    @Suite(.serialized) struct Performance {}
+struct `Pairs preserve their components through transformation and checked conformances` {
+    @Suite struct `Pair construction mapping and comparisons preserve component capabilities` {}
+    @Suite struct `Pair transformations preserve identity errors and nonescapable components` {}
+    @Suite struct `No pair integration cases are defined` {}
+    @Suite(.serialized) struct `No pair performance cases are defined` {}
 }
 
-extension `Pair Tests`.Unit {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair construction mapping and comparisons preserve component capabilities` {
 
     @Test
-    func `init with noncopyable values`() {
+    func `Pair construction preserves noncopyable components`() {
         let pair = Pair(Token(value: 1), Token(value: 2))
         let first = pair.first.value
         let second = pair.second.value
@@ -72,7 +72,7 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `partial consumption of frozen struct`() {
+    func `A frozen pair permits partial consumption of its components`() {
         func consumeBoth(_ pair: consuming Pair<Token, Token>) -> (Int, Int) {
             let f = pair.first.value
             let s = pair.second.value
@@ -130,7 +130,7 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `consuming swapped instance method`() {
+    func `Consuming a pair swaps its components`() {
         let pair = Pair(Token(value: 5), Token(value: 6))
         let swapped = pair.swapped()
         let first = swapped.first.value
@@ -140,7 +140,7 @@ extension `Pair Tests`.Unit {
     }
 }
 
-extension `Pair Tests`.Unit {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair construction mapping and comparisons preserve component capabilities` {
 
     @Test
     func `instance map second transforms second`() {
@@ -167,7 +167,7 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `consuming swapped on copyable pair`() {
+    func `Consuming a copyable pair exchanges its component positions`() {
         let pair = Pair(1, 2)
         let swapped = pair.swapped()
         #expect(swapped.first == 2)
@@ -175,10 +175,10 @@ extension `Pair Tests`.Unit {
     }
 }
 
-extension `Pair Tests`.Unit {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair construction mapping and comparisons preserve component capabilities` {
 
     @Test
-    func `init from tuple`() {
+    func `Pair construction preserves both tuple components`() {
         let pair = Pair((10, 20))
         #expect(pair.first == 10)
         #expect(pair.second == 20)
@@ -193,10 +193,10 @@ extension `Pair Tests`.Unit {
     }
 }
 
-extension `Pair Tests`.Unit {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair construction mapping and comparisons preserve component capabilities` {
 
     @Test
-    func `equatable conformance`() {
+    func `Pair equality compares both components`() {
         let a = Pair(1, 2)
         let b = Pair(1, 2)
         let c = Pair(1, 3)
@@ -205,24 +205,24 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `hashable conformance`() {
+    func `Pair hashing distinguishes component combinations`() {
         let a = Pair(1, 2)
         let b = Pair(1, 2)
         #expect(a.hashValue == b.hashValue)
     }
 }
 
-extension `Pair Tests`.Unit {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair construction mapping and comparisons preserve component capabilities` {
 
     @Test
-    func `comparable lexicographic less than first`() {
+    func `Pair ordering compares the first component before the second`() {
         let a = Pair(1, 100)
         let b = Pair(2, 0)
         #expect(a < b)
     }
 
     @Test
-    func `comparable lexicographic tie break on second`() {
+    func `Pair ordering breaks a first component tie with the second`() {
         let a = Pair(1, 5)
         let b = Pair(1, 7)
         #expect(a < b)
@@ -237,17 +237,17 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `comparable greater than via reverse`() {
+    func `Pair greater than ordering reverses the comparison`() {
         let a = Pair(2, 0)
         let b = Pair(1, 100)
         #expect(a > b)
     }
 }
 
-extension `Pair Tests`.Unit {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair construction mapping and comparisons preserve component capabilities` {
 
     @Test
-    func `equation protocol noncopyable pair equality`() {
+    func `Equation compares equal noncopyable pair components`() {
         let a = Pair(Ranked(value: 1), Ranked(value: 2))
         let b = Pair(Ranked(value: 1), Ranked(value: 2))
         let result: Bool = a == b
@@ -255,7 +255,7 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `equation protocol noncopyable pair inequality`() {
+    func `Equation distinguishes unequal noncopyable pair components`() {
         let a = Pair(Ranked(value: 1), Ranked(value: 2))
         let c = Pair(Ranked(value: 1), Ranked(value: 3))
         let result: Bool = a != c
@@ -263,7 +263,7 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `hash protocol noncopyable pair hashes`() {
+    func `Hash supports noncopyable pair components`() {
         let a = Pair(Ranked(value: 7), Ranked(value: 8))
         let b = Pair(Ranked(value: 7), Ranked(value: 8))
         var ha = Hasher()
@@ -274,7 +274,7 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `comparison protocol noncopyable pair lexicographic`() {
+    func `Comparison orders noncopyable pairs lexicographically`() {
         let a = Pair(Ranked(value: 1), Ranked(value: 100))
         let b = Pair(Ranked(value: 2), Ranked(value: 0))
         let result: Bool = a < b
@@ -282,7 +282,7 @@ extension `Pair Tests`.Unit {
     }
 
     @Test
-    func `comparison protocol noncopyable pair tie break`() {
+    func `Comparison breaks ties between noncopyable pair components`() {
         let a = Pair(Ranked(value: 1), Ranked(value: 5))
         let b = Pair(Ranked(value: 1), Ranked(value: 7))
         let result: Bool = a < b
@@ -290,7 +290,7 @@ extension `Pair Tests`.Unit {
     }
 }
 
-extension `Pair Tests`.Unit {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair construction mapping and comparisons preserve component capabilities` {
 
     @Test
     func `noncopyable sendable pair satisfies Sendable`() {
@@ -307,7 +307,7 @@ extension `Pair Tests`.Unit {
     }
 }
 
-extension `Pair Tests`.`Edge Case` {
+extension `Pairs preserve their components through transformation and checked conformances`.`Pair transformations preserve identity errors and nonescapable components` {
 
     @Test
     func `map second with identity preserves value`() {

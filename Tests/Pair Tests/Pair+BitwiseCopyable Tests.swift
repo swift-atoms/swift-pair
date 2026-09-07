@@ -4,19 +4,19 @@ import Testing
 private func requiresBitwiseCopyable<T: BitwiseCopyable>(_: T.Type) {}
 
 @Suite
-struct `Pair BitwiseCopyable Tests` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
-    @Suite(.serialized) struct Performance {}
+struct `Bitwise pairs preserve tuple layout and component conformance` {
+    @Suite struct `Bitwise pair layout and conformance follow their components` {}
+    @Suite struct `No bitwise pair boundary cases are defined` {}
+    @Suite struct `No bitwise pair integration cases are defined` {}
+    @Suite(.serialized) struct `No bitwise pair performance cases are defined` {}
 }
 
-extension `Pair BitwiseCopyable Tests`.Unit {
-    @Suite struct Layout {}
-    @Suite struct Conformance {}
+extension `Bitwise pairs preserve tuple layout and component conformance`.`Bitwise pair layout and conformance follow their components` {
+    @Suite struct `Bitwise pairs match the size stride and alignment of tuples` {}
+    @Suite struct `Nested pairs and inline arrays preserve bitwise component capabilities` {}
 }
 
-extension `Pair BitwiseCopyable Tests`.Unit.Layout {
+extension `Bitwise pairs preserve tuple layout and component conformance`.`Bitwise pair layout and conformance follow their components`.`Bitwise pairs match the size stride and alignment of tuples` {
 
     @Test
     func `Pair of two Ints has same size as tuple of two Ints`() {
@@ -41,7 +41,7 @@ extension `Pair BitwiseCopyable Tests`.Unit.Layout {
     }
 }
 
-extension `Pair BitwiseCopyable Tests`.Unit.Conformance {
+extension `Bitwise pairs preserve tuple layout and component conformance`.`Bitwise pair layout and conformance follow their components`.`Nested pairs and inline arrays preserve bitwise component capabilities` {
 
     @Test
     func `Pair of BitwiseCopyable arms conforms to BitwiseCopyable`() {
