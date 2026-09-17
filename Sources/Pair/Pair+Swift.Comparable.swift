@@ -1,11 +1,10 @@
-extension Pair: Comparison::Comparison.`Protocol`
+extension Pair: Swift.Comparable
 where
-    First: Comparison::Comparison.`Protocol` & ~Copyable,
-    Second: Comparison::Comparison.`Protocol` & ~Copyable
+    First: Swift.Comparable & ~Copyable,
+    Second: Swift.Comparable & ~Copyable
 {
 
     @inlinable
-    @_disfavoredOverload
     public static func < (lhs: borrowing Pair, rhs: borrowing Pair) -> Bool {
         if lhs.first < rhs.first { return true }
         if rhs.first < lhs.first { return false }

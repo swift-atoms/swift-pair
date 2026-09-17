@@ -1,5 +1,4 @@
 import Pair
-import Hash
 import Testing
 
 struct Token: ~Copyable, Sendable {
@@ -10,19 +9,19 @@ struct Ranked: ~Copyable, Sendable {
     let value: Int
 }
 
-extension Ranked: Equation::Equation.`Protocol` {
+extension Ranked: Swift.Equatable {
     static func == (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value == rhs.value
     }
 }
 
-extension Ranked: Hash::Hash.`Protocol` {
+extension Ranked: Swift.Hashable {
     borrowing func hash(into hasher: inout Hasher) {
         hasher.combine(value)
     }
 }
 
-extension Ranked: Comparison::Comparison.`Protocol` {
+extension Ranked: Swift.Comparable {
     static func < (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value < rhs.value
     }
@@ -34,19 +33,19 @@ struct Span: ~Copyable, ~Escapable {
     init(value: Int) { self.value = value }
 }
 
-extension Span: Equation::Equation.`Protocol` {
+extension Span: Swift.Equatable {
     static func == (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value == rhs.value
     }
 }
 
-extension Span: Hash::Hash.`Protocol` {
+extension Span: Swift.Hashable {
     borrowing func hash(into hasher: inout Hasher) {
         hasher.combine(value)
     }
 }
 
-extension Span: Comparison::Comparison.`Protocol` {
+extension Span: Swift.Comparable {
     static func < (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value < rhs.value
     }

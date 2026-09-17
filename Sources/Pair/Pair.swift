@@ -1,6 +1,3 @@
-@_exported public import Comparison
-@_exported public import Equation
-@_exported public import Hash
 
 @frozen
 public struct Pair<First: ~Copyable & ~Escapable, Second: ~Copyable & ~Escapable>: ~Copyable,
