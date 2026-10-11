@@ -1,7 +1,7 @@
-extension Pair: Swift.Hashable
+extension Pair: Swift::Hashable
 where
-    First: Swift.Hashable & ~Copyable,
-    Second: Swift.Hashable & ~Copyable
+    First: Swift::Hashable & ~Copyable,
+    Second: Swift::Hashable & ~Copyable
 {
 
     @inlinable

@@ -9,19 +9,19 @@ struct Ranked: ~Copyable, Sendable {
     let value: Int
 }
 
-extension Ranked: Swift.Equatable {
+extension Ranked: Swift::Equatable {
     static func == (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value == rhs.value
     }
 }
 
-extension Ranked: Swift.Hashable {
+extension Ranked: Swift::Hashable {
     borrowing func hash(into hasher: inout Hasher) {
         hasher.combine(value)
     }
 }
 
-extension Ranked: Swift.Comparable {
+extension Ranked: Swift::Comparable {
     static func < (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value < rhs.value
     }
@@ -33,19 +33,19 @@ struct Span: ~Copyable, ~Escapable {
     init(value: Int) { self.value = value }
 }
 
-extension Span: Swift.Equatable {
+extension Span: Swift::Equatable {
     static func == (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value == rhs.value
     }
 }
 
-extension Span: Swift.Hashable {
+extension Span: Swift::Hashable {
     borrowing func hash(into hasher: inout Hasher) {
         hasher.combine(value)
     }
 }
 
-extension Span: Swift.Comparable {
+extension Span: Swift::Comparable {
     static func < (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         lhs.value < rhs.value
     }
@@ -329,7 +329,7 @@ extension `Pairs preserve their components through transformation and checked co
 
     @Test
     func `map second with throwing transform propagates error`() {
-        struct Fail: Swift.Error, Equatable {}
+        struct Fail: Swift::Error, Equatable {}
         let pair = Pair(1, 2)
         do throws(Fail) {
             _ = try pair.map(second: { _ throws(Fail) -> Int in throw Fail() })
@@ -341,7 +341,7 @@ extension `Pairs preserve their components through transformation and checked co
 
     @Test
     func `map first and second with throwing transform propagates error`() {
-        struct Fail: Swift.Error, Equatable {}
+        struct Fail: Swift::Error, Equatable {}
         let pair = Pair(1, 2)
         do throws(Fail) {
             _ = try pair.map(

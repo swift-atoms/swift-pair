@@ -1,7 +1,7 @@
-extension Pair: Swift.Equatable
+extension Pair: Swift::Equatable
 where
-    First: Swift.Equatable & ~Copyable,
-    Second: Swift.Equatable & ~Copyable
+    First: Swift::Equatable & ~Copyable,
+    Second: Swift::Equatable & ~Copyable
 {
 
     @inlinable

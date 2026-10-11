@@ -16,15 +16,15 @@ public struct Pair<First: ~Copyable & ~Escapable, Second: ~Copyable & ~Escapable
     }
 }
 
-extension Pair: Swift.Copyable where First: Swift.Copyable & ~Escapable, Second: Swift.Copyable & ~Escapable {}
+extension Pair: Swift::Copyable where First: Swift::Copyable & ~Escapable, Second: Swift::Copyable & ~Escapable {}
 
-extension Pair: Swift.Escapable where First: Swift.Escapable & ~Copyable, Second: Swift.Escapable & ~Copyable {}
+extension Pair: Swift::Escapable where First: Swift::Escapable & ~Copyable, Second: Swift::Escapable & ~Copyable {}
 
-extension Pair: Swift.Sendable
-where First: Swift.Sendable & ~Copyable & ~Escapable, Second: Swift.Sendable & ~Copyable & ~Escapable {}
+extension Pair: Swift::Sendable
+where First: Swift::Sendable & ~Copyable & ~Escapable, Second: Swift::Sendable & ~Copyable & ~Escapable {}
 
 #if !hasFeature(Embedded)
-extension Pair: Swift.Codable where First: Swift.Codable, Second: Swift.Codable {}
+extension Pair: Swift::Codable where First: Swift::Codable, Second: Swift::Codable {}
 #endif
 
 
@@ -32,7 +32,7 @@ extension Pair where First: ~Copyable, Second: ~Copyable & ~Escapable {
 
     @inlinable
     @_lifetime(copy pair)
-    public static func map<NewFirst: ~Copyable, E: Swift.Error>(
+    public static func map<NewFirst: ~Copyable, E: Swift::Error>(
         _ pair: consuming Pair,
         first transform: (consuming First) throws(E) -> NewFirst
     ) throws(E) -> Pair<NewFirst, Second> {
@@ -44,7 +44,7 @@ extension Pair where First: ~Copyable & ~Escapable, Second: ~Copyable {
 
     @inlinable
     @_lifetime(copy pair)
-    public static func map<NewSecond: ~Copyable, E: Swift.Error>(
+    public static func map<NewSecond: ~Copyable, E: Swift::Error>(
         _ pair: consuming Pair,
         second transform: (consuming Second) throws(E) -> NewSecond
     ) throws(E) -> Pair<First, NewSecond> {
@@ -58,7 +58,7 @@ extension Pair where First: ~Copyable, Second: ~Copyable {
     public static func map<
         NewFirst: ~Copyable,
         NewSecond: ~Copyable,
-        E: Swift.Error
+        E: Swift::Error
     >(
         _ pair: consuming Pair,
         first firstTransform: (consuming First) throws(E) -> NewFirst,
@@ -74,7 +74,7 @@ extension Pair where First: ~Copyable, Second: ~Copyable {
 extension Pair where First: ~Copyable & ~Escapable, Second: ~Copyable & ~Escapable {
 
     @inlinable
-    public static func apply<R: ~Copyable, E: Swift.Error>(
+    public static func apply<R: ~Copyable, E: Swift::Error>(
         _ pair: consuming Pair,
         _ body: (consuming First, consuming Second) throws(E) -> R
     ) throws(E) -> R {
@@ -92,7 +92,7 @@ extension Pair where First: ~Copyable, Second: ~Copyable & ~Escapable {
 
     @inlinable
     @_lifetime(copy self)
-    public consuming func map<NewFirst: ~Copyable, E: Swift.Error>(
+    public consuming func map<NewFirst: ~Copyable, E: Swift::Error>(
         first transform: (consuming First) throws(E) -> NewFirst
     ) throws(E) -> Pair<NewFirst, Second> {
         try Self.map(self, first: transform)
@@ -103,7 +103,7 @@ extension Pair where First: ~Copyable & ~Escapable, Second: ~Copyable {
 
     @inlinable
     @_lifetime(copy self)
-    public consuming func map<NewSecond: ~Copyable, E: Swift.Error>(
+    public consuming func map<NewSecond: ~Copyable, E: Swift::Error>(
         second transform: (consuming Second) throws(E) -> NewSecond
     ) throws(E) -> Pair<First, NewSecond> {
         try Self.map(self, second: transform)
@@ -116,7 +116,7 @@ extension Pair where First: ~Copyable, Second: ~Copyable {
     public consuming func map<
         NewFirst: ~Copyable,
         NewSecond: ~Copyable,
-        E: Swift.Error
+        E: Swift::Error
     >(
         first firstTransform: (consuming First) throws(E) -> NewFirst,
         second secondTransform: (consuming Second) throws(E) -> NewSecond
@@ -128,7 +128,7 @@ extension Pair where First: ~Copyable, Second: ~Copyable {
 extension Pair where First: ~Copyable & ~Escapable, Second: ~Copyable & ~Escapable {
 
     @inlinable
-    public consuming func apply<R: ~Copyable, E: Swift.Error>(
+    public consuming func apply<R: ~Copyable, E: Swift::Error>(
         _ body: (consuming First, consuming Second) throws(E) -> R
     ) throws(E) -> R {
         try Self.apply(self, body)

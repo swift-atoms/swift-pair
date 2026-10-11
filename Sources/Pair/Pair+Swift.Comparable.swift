@@ -1,7 +1,7 @@
-extension Pair: Swift.Comparable
+extension Pair: Swift::Comparable
 where
-    First: Swift.Comparable & ~Copyable,
-    Second: Swift.Comparable & ~Copyable
+    First: Swift::Comparable & ~Copyable,
+    Second: Swift::Comparable & ~Copyable
 {
 
     @inlinable
