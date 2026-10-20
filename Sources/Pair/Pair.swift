@@ -1,4 +1,3 @@
-
 @frozen
 public struct Pair<First: ~Copyable & ~Escapable, Second: ~Copyable & ~Escapable>: ~Copyable,
     ~Escapable
@@ -24,9 +23,8 @@ extension Pair: Swift::Sendable
 where First: Swift::Sendable & ~Copyable & ~Escapable, Second: Swift::Sendable & ~Copyable & ~Escapable {}
 
 #if !hasFeature(Embedded)
-extension Pair: Swift::Codable where First: Swift::Codable, Second: Swift::Codable {}
+    extension Pair: Swift::Codable where First: Swift::Codable, Second: Swift::Codable {}
 #endif
-
 
 extension Pair where First: ~Copyable, Second: ~Copyable & ~Escapable {
 

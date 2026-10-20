@@ -1,2 +1,2 @@
-@_exported public import Pair
 import Foundation
+@_exported public import Pair

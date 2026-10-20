@@ -41,7 +41,9 @@ extension `Bitwise pairs preserve tuple layout and component conformance`.`Bitwi
     }
 }
 
-extension `Bitwise pairs preserve tuple layout and component conformance`.`Bitwise pair layout and conformance follow their components`.`Nested pairs and inline arrays preserve bitwise component capabilities` {
+extension `Bitwise pairs preserve tuple layout and component conformance`.`Bitwise pair layout and conformance follow their components`
+    .`Nested pairs and inline arrays preserve bitwise component capabilities`
+{
 
     @Test
     func `Pair of BitwiseCopyable arms conforms to BitwiseCopyable`() {
